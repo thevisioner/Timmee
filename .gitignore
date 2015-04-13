@@ -1,0 +1,25 @@
+# ignore Flash Builder project files
+.actionScriptProperties
+.project
+.settings/
+
+
+# ignore Flash project files
+_resources/
+assets/
+*.fla
+*.p12
+*.swc
+*.swf
+*.xml
+
+!updateDescriptor.2.5.xml
+
+
+# ignore image assets
+*.jpg
+*.png
+
+
+# ignore project files
+TODOS.txt
