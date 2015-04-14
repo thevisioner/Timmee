@@ -7,7 +7,7 @@ package timmee.core
 	
 	public class Constants
 	{
-		public static const DEV_VERSION:Boolean = true;
+		public static const DEV_VERSION:Boolean = false;
 		
 		
 		public static const WINDOW_CORNER_OFFSET:int = 20;
