@@ -29,6 +29,7 @@ package timmee.display
 			windowUI.closeButton.addEventListener(MouseEvent.CLICK, closeClickHandler, false, 0, true);
 			windowUI.behance.addEventListener(MouseEvent.CLICK, behanceClickHandler, false, 0, true);
 			windowUI.github.addEventListener(MouseEvent.CLICK, githubClickHandler, false, 0 , true);
+			windowUI.versionNumber.text = context.version;
 			stage.addChild(windowUI);
 			
 			socialLinksRequest = new URLRequest();

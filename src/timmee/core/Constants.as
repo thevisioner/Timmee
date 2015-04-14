@@ -58,7 +58,7 @@ package timmee.core
 		
 		
 		public static const BEHANCE_PROJECT_URL:String = "";
-		public static const GITHUB_PROJECT_URL:String = "";
+		public static const GITHUB_PROJECT_URL:String = "https://github.com/thevisioner/Timmee";
 		
 		
 		// STRINGS

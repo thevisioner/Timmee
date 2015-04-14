@@ -81,6 +81,15 @@ package timmee.core
 			return _initialized;
 		}
 		
+		public function get version():String
+		{
+			var appXML:XML = app.applicationDescriptor;
+			var ns:Namespace = appXML.namespace();
+			
+			var appVersion:String = appXML.ns::versionNumber[0];
+			return appVersion;
+		}
+		
 		public function get sessionIndex():int
 		{
 			return _sessionIndex;
