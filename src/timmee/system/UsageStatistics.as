@@ -42,14 +42,17 @@ package timmee.system
 		
 		public function initielize(app:NativeApplication):void
 		{
-			this.app = app;
-			
-			req = new URLRequest(Constants.ANALITYCS_TRACKING_URL);
-			req.method = URLRequestMethod.POST;
-			
-			loader = new URLLoader();
-			
-			initialized = true;
+			if (!initialized)
+			{
+				this.app = app;
+				
+				req = new URLRequest(Constants.ANALITYCS_TRACKING_URL);
+				req.method = URLRequestMethod.POST;
+				
+				loader = new URLLoader();
+				
+				initialized = true;
+			}
 		}
 		
 		
@@ -85,7 +88,9 @@ package timmee.system
 			}
 			
 			var payload:String = constructTrackingPayload(action, category);
-			req.data = escape(payload);
+			req.data = payload
+			
+			loader.load(req);
 		}
 		
 		
@@ -95,8 +100,8 @@ package timmee.system
 			var trackingID:String = "tid=" + Constants.ANALYTICS_TRACKING_CODE;
 			var clientID:String = "cid=" + ApplicationSettings.UUID;
 			var hitType:String = "t=event";
-			var eventCategory:String = category ? "ec=" + category : "ec=None";
-			var eventAction:String = "ea=" + action;
+			var eventCategory:String = category ? "ec=" + escape(category) : "ec=None";
+			var eventAction:String = "ea=" + escape(action);
 			
 			var payload:Vector.<String> = Vector.<String>([
 				protocolVersion,
@@ -119,11 +124,11 @@ package timmee.system
 			
 			var appID:String = appXML.ns::id[0];
 			var appName:String = appXML.ns::filename[0];
-			var appVersion:String = appXML.ns::version[0];
+			var appVersion:String = appXML.ns::versionNumber[0];
 			
-			var applicationID:String = "aid=" + appID;
-			var applicationName:String = "an=" + appName;
-			var applicationVersion:String = "av=" + appVersion;
+			var applicationID:String = "aid=" + escape(appID);
+			var applicationName:String = "an=" + escape(appName);
+			var applicationVersion:String = "av=" + escape(appVersion);
 			
 			var payload:Vector.<String> = Vector.<String>([
 				applicationID,
@@ -137,15 +142,16 @@ package timmee.system
 		
 		private function getSystemInfoPayload():String
 		{
-			var flashVersion:String = "fl=" + Capabilities.version;
-			var userAgent:String = "ua=" + Capabilities.os;
-			var userLanguage:String = "ul=" + Capabilities.language;
+			var flashVersion:String = "fl=" + escape(Capabilities.version);
+			var userAgent:String = "ua=" + escape(Capabilities.os);
+			var userLanguage:String = "ul=" + escape(Capabilities.language);
 			var screenResolution:String = "sr=" + Capabilities.screenResolutionX + "x" + Capabilities.screenResolutionY;
 			
 			var payload:Vector.<String> = Vector.<String>([
 				flashVersion,
 				userAgent,
 				userLanguage,
+				
 				screenResolution
 			]);
 			

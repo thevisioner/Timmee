@@ -35,18 +35,21 @@ package timmee.core
 				} catch (error:Error) { }
 				
 				var data:XML = new XML(fileStream.readUTFBytes(fileStream.bytesAvailable));
-				if (data && data.hasOwnProperty("settings"))
+				if (data)
 				{
-					var settings:XML = data.settings[0];
-					sessionLength = settings.hasOwnProperty("sessionLength") ? parseInt(settings.sessionLength.toString()) : sessionLength;
-					shortBreakLength = settings.hasOwnProperty("shortBreakLength") ? parseInt(settings.shortBreakLength.toString()) : shortBreakLength;
-					longBreakLength = settings.hasOwnProperty("longBreakLength") ? parseInt(settings.longBreakLength.toString()) : longBreakLength;
-					longBreakDelay = settings.hasOwnProperty("longBreakDelay") ? parseInt(settings.longBreakDelay.toString()) : longBreakDelay;
-					notificationVolume = settings.hasOwnProperty("notificationVolume") ? parseFloat(settings.notificationVolume.toString()) : notificationVolume;
-					startAtLogin = settings.hasOwnProperty("startAtLogin") ? Boolean(settings.startAtLogin.text().toString() === "true") : startAtLogin;
-					alwaysOnTop = settings.hasOwnProperty("alwaysOnTop") ? Boolean(settings.alwaysOnTop.text().toString() === "true") : alwaysOnTop;
-					UUID = settings.hasOwnProperty("uuid") ? settings.uuid : (new Uuid()).toString();
+					if (data.hasOwnProperty("settings"))
+					{
+						var settings:XML = data.settings[0];
+						sessionLength = settings.hasOwnProperty("sessionLength") ? parseInt(settings.sessionLength.toString()) : sessionLength;
+						shortBreakLength = settings.hasOwnProperty("shortBreakLength") ? parseInt(settings.shortBreakLength.toString()) : shortBreakLength;
+						longBreakLength = settings.hasOwnProperty("longBreakLength") ? parseInt(settings.longBreakLength.toString()) : longBreakLength;
+						longBreakDelay = settings.hasOwnProperty("longBreakDelay") ? parseInt(settings.longBreakDelay.toString()) : longBreakDelay;
+						notificationVolume = settings.hasOwnProperty("notificationVolume") ? parseFloat(settings.notificationVolume.toString()) : notificationVolume;
+						startAtLogin = settings.hasOwnProperty("startAtLogin") ? Boolean(settings.startAtLogin.text().toString() === "true") : startAtLogin;
+						alwaysOnTop = settings.hasOwnProperty("alwaysOnTop") ? Boolean(settings.alwaysOnTop.text().toString() === "true") : alwaysOnTop;
+					}
 					
+					UUID = data.hasOwnProperty("uuid") ? data.uuid : (new Uuid()).toString();
 					System.disposeXML(data);
 				}
 			}
@@ -61,6 +64,8 @@ package timmee.core
 		public static function save():void
 		{
 			var data:XML = new XML('<Timmee/>');
+			data.uuid = UUID;
+			
 			var settings:XML = new XML('<settings/>')
 			settings.sessionLength = sessionLength;
 			settings.shortBreakLength = shortBreakLength;
@@ -69,7 +74,6 @@ package timmee.core
 			settings.notificationVolume = notificationVolume;
 			settings.startAtLogin = startAtLogin;
 			settings.alwaysOnTop = alwaysOnTop;
-			settings.uuid = UUID;
 			data.appendChild(settings);
 			
 			var file:File = new File(Constants.SETTINGS_CONFIGURATION_URL);

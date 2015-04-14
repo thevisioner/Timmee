@@ -54,6 +54,7 @@
 		private function updaterInitializedHandler(event:UpdateEvent):void
 		{
 			event.stopImmediatePropagation();
+			//appUpdater.checkNow();
 		}
 		
 		private function updaterErrorHandler(event:ErrorEvent):void
