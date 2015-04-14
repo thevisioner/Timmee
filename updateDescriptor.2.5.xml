@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5"> 
-    <versionNumber>0.1.1</versionNumber> 
+    <version>0.1.1</version> 
     <url>https://github.com/thevisioner/Timmee/raw/master/Timmee-0.1.1.exe</url> 
     <description>This is the initial version of the Timmee - pomodoro timer application.</description> 
 </update>
