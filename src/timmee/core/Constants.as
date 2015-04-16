@@ -57,7 +57,7 @@ package timmee.core
 		public static const XML_DOCTYPE:String = '<?xml version="1.0" encoding="utf-8" standalone="no" ?>';
 		
 		
-		public static const BEHANCE_PROJECT_URL:String = "";
+		public static const BEHANCE_PROJECT_URL:String = "https://www.behance.net/gallery/25392245/Timmee-Pomodoro-timer-app";
 		public static const GITHUB_PROJECT_URL:String = "https://github.com/thevisioner/Timmee";
 		
 		
