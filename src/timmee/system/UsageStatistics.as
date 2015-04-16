@@ -80,7 +80,7 @@ package timmee.system
 		
 		public function track(action:String, category:String = null):void
 		{
-			if (Capabilities.isDebugger || initialized) return;
+			if (Capabilities.isDebugger) return;
 			
 			if (action === ACTION_APP_LAUNCHED && ApplicationSettings.appRunningFirstTime)
 			{
