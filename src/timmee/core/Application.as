@@ -415,6 +415,7 @@ package timmee.core
 						break;
 					
 					case NotificationMenu.ITEM_QUIT:
+						usageStatistics.track(UsageStatistics.ACTION_APP_EXITED);
 						app.dispatchEvent(new Event(Event.EXITING));
 						break;
 				}

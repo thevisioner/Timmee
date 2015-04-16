@@ -18,10 +18,11 @@ package timmee.system
 	
 	public class UsageStatistics extends EventDispatcher
 	{
-		public static const ACTION_APP_LAUNCHED:String = "Application launched";
-		public static const ACTION_APP_LAUNCHED_FIRST_TIME:String = "Application launched first time";
-		
 		public static const CATEGORY_DEV_VERSION:String = "Development version";
+		
+		public static const ACTION_APP_LAUNCHED_FIRST_TIME:String = "Application launched first time";
+		public static const ACTION_APP_LAUNCHED:String = "Application launched";
+		public static const ACTION_APP_EXITED:String = "Application exited";
 		
 		
 		private var app:NativeApplication;
@@ -113,6 +114,21 @@ package timmee.system
 				(appTrackingPayload || getAppTrackingPayload()),
 				(systemInfoPayLoad || getSystemInfoPayload())
 			]);
+			
+			var sessionControl:String;
+			if (action === ACTION_APP_EXITED)
+			{
+				sessionControl = "sc=end";
+			}
+			else if (action === ACTION_APP_LAUNCHED || action === ACTION_APP_LAUNCHED_FIRST_TIME)
+			{
+				sessionControl = "sc=start";
+			}
+			
+			if (sessionControl)
+			{
+				payload.push(sessionControl);
+			}
 			
 			return payload.join("&");
 		}
