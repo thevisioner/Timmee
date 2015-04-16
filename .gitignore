@@ -6,9 +6,12 @@
 
 # ignore Flash project files
 _resources/
+ui/*/*.xml
+*.air
 *.p12
 *.swc
 *.swf
+*.tmp
 
 
 # ignore project files
